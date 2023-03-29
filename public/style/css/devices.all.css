@@ -1,0 +1,92 @@
+/* Frame 320px x 489px */
+@media only screen and (min-width:0px) and (max-width:320px){
+
+}
+/* Frame 375px x 489px */
+@media only screen and (min-width:321px) and (max-width:375px){
+    
+}
+/* Frame 425px x 489px */
+@media only screen and (min-width:375px) and (max-width:425px){
+    .container{
+        background-color: rgb(180, 230, 0);
+    }
+}
+/* Frame 768px x 489px */
+@media only screen and (min-width:425px) and (max-width:768px){
+    .container{
+        background-color: rgb(0, 196, 230);
+    }
+}
+/* Frame 1024px x 489px */
+@media only screen and (min-width:490px) and (max-width:1024px){
+    .container{
+        background-color: rgb(230, 0, 173);
+    }
+}
+/* Frame 1280px x 640px */
+@media only screen and (min-width:1025px) and (max-width:1280px){
+    .container{
+        background-color: rgb(51, 255, 0);
+    }
+}
+/* Frame 1281px x 640px */
+@media only screen and (min-width:1281px) and (max-width:1440px){
+    .container{
+        background-color: #f5f5f5;
+    }
+}
+/* Frame 2560px x 978px */
+@media only screen and (min-width:1441px) and (max-width:2560px){
+    .container{
+        background-color: #f5f5f5;
+        width: 1423px;
+        height: 721px;
+    }
+    .content-page{
+        width: 1355px;
+        height: 655px;
+    }
+    .content-img-bg, .content-img-size-hero{
+        height: 655px;
+    }
+    .box-form-md{
+        height: 655px;
+    }
+    .title-md-pg-0{
+        font-size: 35px;
+        top: 127px;
+    }
+    .input-box{
+        height: 60px;
+        top: 185px;
+        border-bottom: 3px solid #fff;
+    }
+    .box-icon{
+        width: 60px;
+        height: 60px;
+    }
+    .box-input-sc{
+        height: 60px;
+        font-size: 23px;
+    }
+    .icon-center{
+        font-size: 45px;
+        left: 9.5px;
+        top: 8px;
+    }
+    .input-button{
+        top: 175px;
+    }
+    .btn{
+        width: 100px;
+        height: 45px;
+    }
+    .btn-success{
+        font-size: 18px;
+    }
+    .forgot-pass{
+        font-size: 19px;
+        top: 12px;
+    }
+}
