@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\minyakController;
+use App\Http\Controllers\pembelianController;
 
 /*
 |--------------------------------------------------------------------------
@@ -48,5 +49,6 @@ Route::resource('/kirim','KirimEmailController');
 Route::resource('/forgot/password','ForgotPassController');
 Route::resource('/reset/password','ForgotPassController');
 Route::get('/minyak/tambah/data',[minyakController::class,'tambah']);
+Route::get('/pembelian/tambah/data',[pembelianController::class,'tambah']);
 Route::resource('/minyak/create','minyakController');
 Route::resource('/pembelian','pembelianController');

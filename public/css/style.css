@@ -360,7 +360,8 @@ body{
 }
 .form-data{
     width: 98%;
-    height: 80px;
+    height: auto;
+    overflow: hidden;
     border-radius: 15px;
     box-shadow: 2px 3px 10px rgba(24, 21, 21, 0.6);
 }
@@ -371,6 +372,7 @@ body{
     margin: 15px;
     position: relative;
     overflow: hidden;
+    border: 1px solid black;
 }
 .title-sec-add{
     font-size: 20px;

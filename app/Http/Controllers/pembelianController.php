@@ -18,4 +18,7 @@ class pembelianController extends Controller
         return view('pembelian')
             ->with('sql',$sql);
     }
+    public function tambah(){
+        return view('pembelianAdd');
+    }
 }

@@ -2,7 +2,11 @@
     <script>
         alert("{{ session()->get('error') }}");
     </script>
-elseif(session()->has('lengthmatch'))
+@elseif(session()->has('available'))
+    <script>
+        alert("{{ session()->get('available') }}");
+    </script>
+@elseif(session()->has('lengthmatch'))
     <script>
         alert("{{ session()->get('lengthmatch') }}");
     </script>
@@ -63,7 +67,7 @@ elseif(session()->has('lengthmatch'))
                         <p class="title-nav">Persediaan</p>
                     </div>
                 </div>
-                <div class="navbar-list-content">
+                <div class="navbar-list-content" onclick="Nav_scr(7)">
                     <div class="box-nav-list active">
                         <i class="fa fa-dollar icon-center-dash"></i>
                         <p class="title-nav">Pembelian</p>
@@ -103,7 +107,7 @@ elseif(session()->has('lengthmatch'))
         </div>
         <div class="nav-top-md">
             <div class="label-title-left">
-                Pembelian
+                <a href="{{ url('/minyak') }}">Jenis Minyak</a> > {{ isset($value) ? "Ubah Data" : "Tambah Data" }}
             </div>
             <div class="settings">
                 <i class="fa fa-cogs"></i> settings   
@@ -114,38 +118,50 @@ elseif(session()->has('lengthmatch'))
         </div>
         <div class="content-box">
             <div class="page-add">
-                <span class="btn-add" onclick="add_data(2)"><i class="fa fa-pen"></i> &nbsp;Tambah Data</span>
+                <span class="btn-add" onclick="table_data(1)"><i class="fa fa-table"></i> &nbsp;Tampilkan Data</span>
             </div>
-            <div class="table-mod">
-                <table class="table-content-list">
-                    <tr class="row-table">
-                        <th class="header-table">#</th>
-                        <th class="header-table">Tanggal</th>
-                        <th class="header-table">Nomor Bukti</th>
-                        <th class="header-table">Minyak</th>
-                        <th class="header-table">Supplier</th>
-                        <th class="header-table">Aksi</th>
-                    </tr>
+            <div class="form-data">
+                @if(isset($value))
                     @php
-                        $no=1;
+                        $sql = DB::table('tb_jenisminyak')
+                            ->where('namaMinyak',$value)
+                            ->first();
+                        $key = $sql->id;
                     @endphp
-                    @foreach($sql as $q)
-                        <tr class="row-table">
-                            <td class="desc-table center-content">{{ $no++ }}</td>
-                            <td class="desc-table center-content">{{ $q->tgl }}</td>
-                            <td class="desc-table center-content">{{ $q->noBukti }}</td>
-                            <td class="desc-table center-content">{{ $q->namaMinyak }}</td>
-                            <td class="desc-table center-content">{{ $q->nama_supplier }}</td>
-                            <td class="desc-table center-content">
-                                <div class="box-action-1">
-                                    <i class="fa fa-pen-to-square pointer" onclick="editPembelian('{{ encrypt($q->id,0.10 )}}')"></i> | 
-                                    <i class="fa fa-eye pointer" onclick="viewPembelian('{{ encrypt($q->id,0.10 )}}')"></i>
-                                </div>
-                            </td>
-                        </tr>
-                    @endforeach()
-                </table>
-            </div>   
+                    <form method="post" action="/minyak/{{ encrypt($key) }}">
+                        @csrf()
+                        @method('put')
+                        <div class="box-data-input">
+                            <label class="title-sec-add">Nama Minyak</label>
+                                <input type="hidden" name="id" value="{{ encrypt($key) }}">
+                                <input type="text" name="nama_minyak" oninput="namaMinyak()" id="minyak" class="input-form-add" value="{{ $value }}" required>
+                            <button class="btn-proses icon-white" id="btn-check"><i class="fa fa-check icon-size"></i> Simpan</button>
+                        </div>
+                    </form>
+                @else
+                    @php
+                        $sql = DB::table("tb_pembelian")
+                            ->join("tb_jenisminyak","tb_jenisminyak.id","=","tb_pembelian.id_jenisminyak")
+                            ->get();
+                        $minyak = $sql->tb_jenisminyak.namaMinyak;
+                    @endphp
+                    <form method="post" action="/pembelian/create">
+                        @csrf()
+                        <div class="box-data-input">
+                            <label class="title-sec-add">Nomor Bukti</label>
+                                <input type="text" name="noBukti" oninput="noBukti()" id="no_Bukti" class="input-form-add" required>
+                            <button class="btn-proses icon-white" id="btn-check"><i class="fa fa-check icon-size"></i> Simpan</button>
+                        </div>
+                        <div class="box-data-input">
+                            <label class="title-sec-add">Jenis Minyak</label>
+                                <select type="text" name="nama_minyak" oninput="namaMinyak()" id="minyak" class="input-form-add" required>
+                                    <option value="asd">{{ $minyak }}</option>
+                                <select>
+                            <button class="btn-proses icon-white" id="btn-check"><i class="fa fa-check icon-size"></i> Simpan</button>
+                        </div>
+                    </form>
+                @endif
+            </div>
         </div>
     </div>
     <script src="{{asset('style/js/all.js')}}"></script>

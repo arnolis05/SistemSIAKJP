@@ -94,6 +94,10 @@ function add_data(x){
         var nav_link = "/minyak/tambah/data";
         window.location.assign(nav_link);
     }
+    else if(x==2){
+        var nav_link = "/pembelian/tambah/data";
+        window.location.assign(nav_link);
+    }
 }
 function table_data(x){
     if(x==1){
