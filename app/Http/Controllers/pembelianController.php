@@ -19,6 +19,9 @@ class pembelianController extends Controller
             ->with('sql',$sql);
     }
     public function tambah(){
-        return view('pembelianAdd');
+        $dataMinyak = DB::table('tb_jenisminyak')
+            ->get();
+        return view('pembelianAdd')
+            ->with('dataMinyak',$dataMinyak);
     }
 }

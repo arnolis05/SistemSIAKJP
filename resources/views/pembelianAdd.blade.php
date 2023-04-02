@@ -139,25 +139,47 @@
                         </div>
                     </form>
                 @else
-                    @php
-                        $sql = DB::table("tb_pembelian")
-                            ->join("tb_jenisminyak","tb_jenisminyak.id","=","tb_pembelian.id_jenisminyak")
-                            ->get();
-                        $minyak = $sql->tb_jenisminyak.namaMinyak;
-                    @endphp
                     <form method="post" action="/pembelian/create">
                         @csrf()
-                        <div class="box-data-input">
-                            <label class="title-sec-add">Nomor Bukti</label>
-                                <input type="text" name="noBukti" oninput="noBukti()" id="no_Bukti" class="input-form-add" required>
-                            <button class="btn-proses icon-white" id="btn-check"><i class="fa fa-check icon-size"></i> Simpan</button>
+                        <div class="box-buy-md">
+                            <label class="title-buy-add">Nomor Bukti</label>
+                            <span class="input-form-buy-add" name="noBukti" value="NBKSPBU202303272114">NBKSPBU202303272114</span>
                         </div>
-                        <div class="box-data-input">
-                            <label class="title-sec-add">Jenis Minyak</label>
-                                <select type="text" name="nama_minyak" oninput="namaMinyak()" id="minyak" class="input-form-add" required>
-                                    <option value="asd">{{ $minyak }}</option>
-                                <select>
-                            <button class="btn-proses icon-white" id="btn-check"><i class="fa fa-check icon-size"></i> Simpan</button>
+                        <div class="box-buy-md">
+                            <label class="title-buy-add">Jenis Minyak</label>
+                            <select class="input-form-buy-add" type="text" name="noBukti">
+                                @foreach($dataMinyak as $minyak)
+                                    <option value="{{ $minyak->id }}">{{ $minyak->namaMinyak }}</option>
+                                @endforeach()
+                            </select>
+                        </div>
+                        <div class="box-buy-md">
+                            <label class="title-buy-add">Tanggal</label>
+                            <input class="input-form-buy-add" type="date" name="tgl" value="02/04/2023">
+                        </div>
+                        <div class="box-buy-md">
+                            <label class="title-buy-add">Nama Supplier</label>
+                            <input class="input-form-buy-add" type="text" name="nama_supp">
+                        </div>
+                        <div class="box-buy-md">
+                            <label class="title-buy-add">Nomor Bukti</label>
+                            <span class="input-form-buy-add" name="noBukti" value="NBKSPBU202303272114">NBKSPBU202303272114</span>
+                        </div>
+                        <div class="box-buy-md">
+                            <label class="title-buy-add">Jenis Minyak</label>
+                            <select class="input-form-buy-add" type="text" name="noBukti">
+                                @foreach($dataMinyak as $minyak)
+                                    <option value="{{ $minyak->id }}">{{ $minyak->namaMinyak }}</option>
+                                @endforeach()
+                            </select>
+                        </div>
+                        <div class="box-buy-md">
+                            <label class="title-buy-add">Tanggal</label>
+                            <input class="input-form-buy-add" type="date" name="tgl" value="02/04/2023">
+                        </div>
+                        <div class="box-buy-md">
+                            <label class="title-buy-add">Nama Supplier</label>
+                            <input class="input-form-buy-add" type="text" name="nama_supp">
                         </div>
                     </form>
                 @endif
